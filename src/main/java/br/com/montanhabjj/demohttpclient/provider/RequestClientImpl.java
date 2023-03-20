@@ -1,5 +1,7 @@
 package br.com.montanhabjj.demohttpclient.provider;
 
+import br.com.montanhabjj.demohttpclient.application.enuns.RequestMethod;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,11 +11,11 @@ import java.net.http.HttpResponse;
 
 public class RequestClientImpl {
 
-    public String  testeRequest(String request) throws URISyntaxException, IOException, InterruptedException {
+    public String  testeRequest(RequestMethod method, String request) throws URISyntaxException, IOException, InterruptedException {
 
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://postman-echo.com/patch"))
-                .method("PATCH", HttpRequest.BodyPublishers.ofString(request))
+                .method(method.getValue(), HttpRequest.BodyPublishers.ofString(request))
                 .header("authorization", "BEARER 123")
                 .build();
 

@@ -1,5 +1,6 @@
 package br.com.montanhabjj.demohttpclient.application.config;
 
+import br.com.montanhabjj.demohttpclient.application.enuns.RequestMethod;
 import br.com.montanhabjj.demohttpclient.provider.RequestClientImpl;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,12 +26,12 @@ public class DemoApplication {
 
         objectMapper.writeValueAsString(response);
 
-        var result = teste.testeRequest(objectMapper.writeValueAsString(response));
+        var result = teste.testeRequest(RequestMethod.PATCH, objectMapper.writeValueAsString(response));
 
         var resultResponse = getData(result).getData();
 
         System.out.println(resultResponse);
-        System.out.println(teste.testeRequest());
+//        System.out.println(teste.testeRequest());method
     }
 
     private static Data getData(String res) throws JsonProcessingException {
