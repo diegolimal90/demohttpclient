@@ -28,9 +28,9 @@ public class DemoApplication {
 
         var result = teste.testeRequest(RequestMethod.PATCH, objectMapper.writeValueAsString(response));
 
-        var resultResponse = getData(result).getData();
+        var resultResponse = getBody(result, Data.class);
 
-        System.out.println(resultResponse);
+        System.out.println(resultResponse.getData() );
 //        System.out.println(teste.testeRequest());method
     }
 
@@ -38,6 +38,11 @@ public class DemoApplication {
         ObjectMapper objectMapper = new ObjectMapper();
 
         return objectMapper.readValue(res, Data.class);
+    }
+
+    private static <T> T getBody(String res, Class<T> resType) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return (T) objectMapper.readValue(res, resType);
     }
 }
 
